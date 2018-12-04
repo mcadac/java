@@ -9,4 +9,13 @@ Using theOptional.orElse()method represents an elegant alternative to theisPrese
 
 4. **orElseGet()** Using theOptional.orElseGet()method represents another elegant alternative to theisPresent()-get()pair for setting/returning a value. The important thing here is that the parameter oforElseGet()is a Java 8,Supplier. This means that theSuppliermethod passed as an argument is only executed when anOptionalvalue is not present. So, this is useful to avoid theorElse()performance penalty of creating objects and executing code that we don't need when anOptionalvalue is present.
 
-5. When no value is present, Throw a java.util.NoSuchElementException via **orElseThrow()** since Java 10. Starting with Java 10, this can be done via theorElseThrow()method without arguments
+5. When no value is present, Throw a java.util.NoSuchElementException via **orElseThrow()** since Java 10. Starting with Java 10, this can be done via theorElseThrow()method without arguments.
+
+6. Consume an optional if it is present, If it is not present, then execute an Empty-based action. This is a Job for **Optional.ifPresentElse() Java 9**.
+    ```
+    Optional<String> status = ... ;
+    status.ifPresentOrElse(
+        System.out::println, 
+        () -> System.out.println("Status not found")
+    );
+    ```
