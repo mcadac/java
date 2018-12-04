@@ -1,5 +1,8 @@
 # Optional recommendations
 
+**Optionalis not cost-free, it is just another object that consumes memory and needs to be collected.**
+
+
 1. Never assign null to an Optional variable
 
 2. Ensure that an optional has a value before calling Optional.get() method
@@ -19,3 +22,29 @@ Using theOptional.orElse()method represents an elegant alternative to theisPrese
         () -> System.out.println("Status not found")
     );
     ```
+7. When the value is present, set/return that optional. When no value is present, set/return the other optional. **Optiona.or() Java 9**
+    ```
+     Optional<String> defaultStatus = Optional.of("PENDING");
+     return status.or(() -> defaultStatus);
+    ```
+    
+ 8. Avoid chaining Optioanl's methods with the single purpose of getting a Value... Sometimes, we tend to "over use" things for instance:
+    ```
+    return Optional.ofNullable(status).orElse("PENDING");
+    return status == null ? "PENDING" : status;
+    ```
+ 9. Do not declare any field of type Optional.
+ Do not use Optional in methods including setters or constryctors arguments.
+ Remember that Optional was not intended to be used for fields and it doesn't implement Serializable. The Optional class is definitively not intended for use as a property of a Java Bean.
+ 
+ 10. Do not use Optional in Constructor Arguments
+ Do not use Optional as field or in methods arguments.
+ This is another usage against Optional intention. Optional wraps objects with another level of abstraction, which, in that case, simply adds extra boilerplate code.
+ 
+ 11. Do not use Optional in setters arguments
+ 
+ 12. Do not use Optional method arguments. Don't force call sites to create Optionals. UsingOptionalin methods arguments is another common mistake.This practice clutters the code and may cause dependence.
+ 
+ 13. Do not use Optional to return empty collections or arrays.
+ 
+ 14. Avoid using Optional in Collections. Usuallym there are better ways to represent things, This approach can be a design smell. It sounds like this: so, aMapreturnsnullif there is no mapping for a key or ifnullis mapped to the key, so I cannot distinguish it if the key is not present or is a missing value. I will wrap the values viaOptional.ofNullableand done! Well, what you will do if yourMapof OptionalGoodies will be populated withnullvalues, absentOptionalvalues, or evenOptionalobjects that contains something else, but not your Goodies? Haven't you just nested the initial problem into one more layer? How about the performance penalty? **Optionalis not cost-free, it is just another object that consumes memory and needs to be collected.**
