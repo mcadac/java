@@ -50,3 +50,14 @@ Using theOptional.orElse()method represents an elegant alternative to theisPrese
  13. Do not use Optional to return empty collections or arrays.
  
  14. Avoid using Optional in Collections. Usuallym there are better ways to represent things, This approach can be a design smell. It sounds like this: so, aMapreturnsnullif there is no mapping for a key or ifnullis mapped to the key, so I cannot distinguish it if the key is not present or is a missing value. I will wrap the values viaOptional.ofNullableand done! Well, what you will do if yourMapof OptionalGoodies will be populated withnullvalues, absentOptionalvalues, or evenOptionalobjects that contains something else, but not your Goodies? Haven't you just nested the initial problem into one more layer? How about the performance penalty? **Optionalis not cost-free, it is just another object that consumes memory and needs to be collected.**
+ 
+ 15. Avoid Optional <T> and choose Non-generic OptionalInt, OptionalLong or OptionalDouble
+    
+ 16. aving twoOptionalsin anassertEquals()doesn't require unwrapped values. This is applicable becauseOptional#equals()compares the wrapped values, not theOptionalobjects.
+ 
+ 17. TheOptional.map()andOptional.flatMap()are very convenient approaches for transforming theOptionalvalue. Themap()method applies the function argument to the value, then returns the result wrapped in an Optional, while, by comparison, theflatMap()method takes a function argument that is applied to anOptionalvalue, and then returns the result directly.
+ 
+ *** References
+ https://dzone.com/articles/using-optional-correctly-is-not-optional
+ 
+ 
