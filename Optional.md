@@ -1,7 +1,7 @@
 # Optional recommendations
 
-**Optionalis not cost-free, it is just another object that consumes memory and needs to be collected.**
-The purpose of Java 8 Optional is clearly defined by Brian Goetz, Java’s language architect:
+a. **Optionalis not cost-free, it is just another object that consumes memory and needs to be collected.**
+b. The purpose of Java 8 Optional is clearly defined by Brian Goetz, Java’s language architect:
 **Optional is intended to provide a limited mechanism for library method return types where there needed to be a clear way to represent “no result," and using null for such was overwhelmingly likely to cause errors.**
 
 ** **
