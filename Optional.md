@@ -1,6 +1,8 @@
 # Optional recommendations
 
 **Optionalis not cost-free, it is just another object that consumes memory and needs to be collected.**
+The purpose of Java 8 Optional is clearly defined by Brian Goetz, Java’s language architect:
+** **
 
 
 1. Never assign null to an Optional variable
