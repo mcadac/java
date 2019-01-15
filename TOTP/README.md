@@ -41,8 +41,9 @@ Chart HTTP API to create a compliant QR code encoding the necessary information.
 
 2. **Validate**, it can be do with the next values, the password to validate, the shared secret and the time-based moving factor.
 
-3. The secret key can be provided in one of the supported representations: **BASE32** or **BASE64**
+## Secret
 
+1. The secret key can be provided in one of the supported representations: **BASE32** (default) or **BASE64** (RFC 6030).
 
 ### References
 
