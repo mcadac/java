@@ -69,4 +69,17 @@ public class GoogleService {
     }
 
 
+    /**
+     *
+     * @param key
+     * @param code
+     * @return
+     */
+    public boolean validateTotp(final String key, final int code){
+
+       return googleAuthenticator.authorize(key,code);
+
+    }
+
+
 }

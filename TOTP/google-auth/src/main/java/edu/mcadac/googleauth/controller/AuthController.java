@@ -57,5 +57,18 @@ public class AuthController {
 
     }
 
+    /**
+     *
+     * @param key
+     * @param code
+     * @return
+     */
+    @GetMapping
+    public boolean validate(@RequestParam final String key, @RequestParam final int code){
+
+        System.out.println("Validate key : " + key + " with code : " + code );
+        return googleService.validateTotp(key, code);
+    }
+
 
 }
