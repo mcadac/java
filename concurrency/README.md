@@ -17,3 +17,6 @@ as necessary than to write a single program that performs all the tasks.
 * **Threads** allow multiple streams of program control flow to coexist within a process. They share process-wide resources such memory and file handles, but each thread has its own program counter, stack, and local variables.
 
 * Since threads share the memory address space of their owning process, all threads within a process have access to the same variables and allocate objects from the same heap, which allows finer-grained data sharing than inter-process mechanisms. But without explicit synch to coordinate access to share data, a thread may modify variables that another thread is in the middle of using, with unpredictable results.
+
+* Threads can reduce development and maintenance costs and improve the performance of complex applications.
+* It are useful in server applications for improving resource utilization and throughpu.
