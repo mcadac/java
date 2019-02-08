@@ -61,11 +61,31 @@ public class AuthenticatorService {
         Objects.requireNonNull(key,"The Authenticator key cannot be null!");
         final GoogleAuthenticatorKey googleAuthenticatorKey = new GoogleAuthenticatorKey.Builder(key).build();
         final String otpAuthURL = GoogleAuthenticatorQRGenerator.getOtpAuthURL(APP_NAME,user, googleAuthenticatorKey);
+        final String qr =  GoogleAuthenticatorQRGenerator.getOtpAuthTotpURL(APP_NAME,user, googleAuthenticatorKey);
 
         LOGGER.info("Url : {}",otpAuthURL);
         return otpAuthURL;
 
     }
+
+    /**
+     * Build the QR with the key and user sent
+     *
+     * @param key
+     * @param user
+     * @return QR's URL
+     */
+    public String generateQRTotp(final String key, final String user){
+
+        Objects.requireNonNull(key,"The Authenticator key cannot be null!");
+        final GoogleAuthenticatorKey googleAuthenticatorKey = new GoogleAuthenticatorKey.Builder(key).build();
+        final String totp =  GoogleAuthenticatorQRGenerator.getOtpAuthTotpURL(APP_NAME,user, googleAuthenticatorKey);
+
+        LOGGER.info("totp : {}",totp);
+        return totp;
+
+    }
+
 
 
     /**

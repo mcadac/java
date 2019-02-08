@@ -1,10 +1,19 @@
 package edu.mcadac.googleauth.controller;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import com.google.zxing.qrcode.encoder.QRCode;
 import edu.mcadac.googleauth.authenticator.AuthenticatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * Access point to service
@@ -54,9 +63,42 @@ public class AuthController {
      * @return QR's url
      */
     @GetMapping("/QR")
-    public String generateQR(@RequestParam final String key, @RequestParam final String user){
+    public String generateQR(@RequestParam final String key, @RequestParam final String user) {
 
         LOGGER.info("Key sent: {} and user: {}", key, user);
+
+        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        int width = 256;-
+        int height = 256;
+
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB); // create an empty image
+        int white = 255 << 16 | 255 << 8 | 255;
+        int black = 0;
+
+        try{
+
+            final BitMatrix bitMatrix = qrCodeWriter
+                    .encode(authenticatorService.generateQRTotp(key, user), BarcodeFormat.QR_CODE, width, height);
+
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < height; j++) {
+                    image.setRGB(i, j, bitMatrix.get(i, j) ? black : white);
+                }
+            }
+
+            try {
+                ImageIO.write(image, "jpg", new File("QR.jpg")); // save QR image to disk
+            } catch (IOException e) {
+
+                e.printStackTrace();
+            }
+
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+
         return authenticatorService.generateQR(key, user);
     }
 
