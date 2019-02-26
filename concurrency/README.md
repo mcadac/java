@@ -20,3 +20,10 @@ as necessary than to write a single program that performs all the tasks.
 
 * Threads can reduce development and maintenance costs and improve the performance of complex applications.
 * It are useful in server applications for improving resource utilization and throughpu.
+* In a multithreaded program, another thread can still run while the first thread is waiting for the I/O to complete, allowing the application to still make progress during the bloking I/O.
+
+* Java Class libraried acquired a set of packages (java.nio) for nonblocking I/O.
+
+### Risk of threads
+
+#### Safety hazards
