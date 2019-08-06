@@ -8,7 +8,7 @@
 ### Java Commands
 
 1. Extract a JAR file:   jar xf jar-file [archived-file(s)]
-2. See .class file:   javap <options> <classes>
+2. See .class file:   javap -c {classes}
 
 ### References
 
