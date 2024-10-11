@@ -13,16 +13,16 @@ public class JSchExampleSSHConnection {
 	 * Java SSH Connection Program
 	 */
 	public static void main(String[] args) {
-	    String host="ssh.journaldev.com";
-	    String user="sshuser";
-	    String password="sshpwd";
+	    String host=args[0];
+	    String user=args[1];
+	    String password=args[2];
 	    String command1="ls -ltr";
 	    try{
 	    	
 	    	java.util.Properties config = new java.util.Properties(); 
 	    	config.put("StrictHostKeyChecking", "no");
 	    	JSch jsch = new JSch();
-	    	Session session=jsch.getSession(user, host, 22);
+	    	Session session=jsch.getSession(user, host, 322);
 	    	session.setPassword(password);
 	    	session.setConfig(config);
 	    	session.connect();
